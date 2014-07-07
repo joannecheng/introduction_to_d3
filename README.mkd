@@ -5,23 +5,31 @@ Given at eurucamp 2014.
 
 ## Overview
 
-### Introduction
+## Introduction
 * Workshop installations
 * What is D3.js?
 
-### Selections
+## Selections
 * Selecting a DOM element
 * Modifying a selection
 * Creating new elements
 
-### Data
+## Data
 * Binding a simple array to a selection
 * `.selectAll`, `.data`, and `.enter`
 * `.attr`
   * static param
   * function param
+* `.exit`
 * Getting data using `.csv`
 
-### Let's talk about SVG
+## Let's talk about SVG
 * Change previous examples to SVG
 * Styling SVG with CSS
+
+## Transitions
+
+## Mouse Interactions
+
+## Layouts
+* Creating a network of GitHub following/followers/random users

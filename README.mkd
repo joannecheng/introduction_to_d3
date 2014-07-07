@@ -4,3 +4,19 @@ Introduction To D3.js
 Given at eurucamp 2014.
 
 ## Overview
+
+### Introduction
+
+* Workshop installations
+* What is D3.js?
+
+### Selections
+
+* Selecting a DOM element
+* Modifying a selection
+* Creating new elements
+
+### Data
+
+* Binding a simple array to a selection
+* `select`, `data`, and `enter`

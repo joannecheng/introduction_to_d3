@@ -1,0 +1,46 @@
+# D3 Workshop
+
+## DATA
+
+We just learned about how D3 lets us manipulate the DOM. The strength of D3
+comes from allowing users to *bind data* to these selections. In this example,
+we'll create a bar graph from divs using data binding.
+
+Let's start by selecting the body and appending a container div to it.
+
+```javascript
+  var selection = d3.select("body").append("div").classed("container", true)
+```
+
+Now add an array of numbers to our JS:
+
+```javascript
+  var numbers = [30, 10, 23, 49, 37, 20]
+```
+
+Now we're going to "bind" this data to the selection and create our bars.
+
+```javascript
+  selection.selectAll("div")
+  .data(a)
+  .enter()
+  .append("div")
+  .classed("bar", true)
+```
+
+A lot just happened here.
+
+* We took our selection of `<div class='container></div>` and called `selectAll`
+  to select all divs *inside that selection*. Now, when we created our container
+  div, and at the time we called `selectAll`, we didn't have anything in it.
+  Right now, that `selectAll` is acting as a placeholder so we can bind data to
+  it.
+* We call a method called `data` and pass in the array. Now we've "bound" the
+  data to the selection - if we go into the sorce, we can see that the d3
+  selection has a `__data__` attribute that contains the array.
+* Now we call a method called `enter()`. When this method is called, it causes
+  all the methods chained *after* it to be called for every element on of the
+  array we just bound to the selection.
+* We can only call certain methods after a `enter` method, most commonly an
+  `append` is called. This appends a "div" to `.container` for every element in
+  array `numbers`.

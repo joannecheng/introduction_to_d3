@@ -1,9 +1,19 @@
 Introduction To D3.js
 =========
 
-Given at eurucamp 2014.
+## Technical Requirements
 
-## Overview
+We're going to need a few things to go through this workshop:
+
+* git
+* Ruby
+* A modern browser that supports SVG (Let's just say Chrome)
+
+Not required, but nice:
+
+* An active GitHub account where you are following some people
+
+Given at eurucamp 2014.
 
 ## Introduction
 * Workshop installations

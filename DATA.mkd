@@ -62,3 +62,11 @@ around. We *could* use the `style` method, but let's just use CSS.
     margin-left: 5px;
   }
 ```
+
+rather than displaying the numbers, let's make them proper "bars." We can use
+the numbers in the array to dictate how tall the bar is going to be by passing
+a simple function to the `style` method.
+
+```javascript
+  bars.style("height", function(d) { return d + "px"; })
+```

@@ -21,7 +21,7 @@ Now add an array of numbers to our JS:
 Now we're going to "bind" this data to the selection and create our bars.
 
 ```javascript
-  selection.selectAll("div")
+  var bars = selection.selectAll("div")
   .data(a)
   .enter()
   .append("div")
@@ -30,7 +30,7 @@ Now we're going to "bind" this data to the selection and create our bars.
 
 A lot just happened here.
 
-* We took our selection of `<div class='container></div>` and called `selectAll`
+* We took our selection of `<div class="container"></div>` and called `selectAll`
   to select all divs *inside that selection*. Now, when we created our container
   div, and at the time we called `selectAll`, we didn't have anything in it.
   Right now, that `selectAll` is acting as a placeholder so we can bind data to
@@ -44,3 +44,21 @@ A lot just happened here.
 * We can only call certain methods after a `enter` method, most commonly an
   `append` is called. This appends a "div" to `.container` for every element in
   array `numbers`.
+
+So now we have 6 divs with the class of 'bar'. Let's see if we can display data
+from the array in the DOM.
+
+```javascript
+  bars.text(function(d) { return d; });
+```
+
+Now we should be seeing the numbers displayed on the screen. Cool! Let's change
+the CSS of these divs so they're right against each other, rather than floating
+around. We *could* use the `style` method, but let's just use CSS.
+
+```css
+  .bar {
+    float: left;
+    margin-left: 5px;
+  }
+```

@@ -2,119 +2,119 @@
 
 ## Selections
 
-  We’re going to assume you know what the DOM (the hierarchal structure that
-  makes up our HTML pages) and what JavaScript (our browsers’ scripting
-  language) are.
+We’re going to assume you know what the DOM (the hierarchal structure that
+makes up our HTML pages) and what JavaScript (our browsers’ scripting
+language) are.
 
-  If you’ve used jQuery before, you’ve dealt with selections. In jQuery,
-  you can select a DOM element like this:
+If you’ve used jQuery before, you’ve dealt with selections. In jQuery,
+you can select a DOM element like this:
 
-    `$("body")`
+  `$("body")`
 
-  Your return from this call is a jQuery object. D3 lets you select elements in
-  a similar way (passing in any CSS3 selector).
+Your return from this call is a jQuery object. D3 lets you select elements in
+a similar way (passing in any CSS3 selector).
 
-    `d3.select('body')`
+  `d3.select('body')`
 
-  Your return from this function is a _d3 selection_. What can you do with a
-  selection? You can change DOM attributes using the `attr` method. For
-  instance, you can change the background color using the selection above.
+Your return from this function is a _d3 selection_. What can you do with a
+selection? You can change DOM attributes using the `attr` method. For
+instance, you can change the background color using the selection above.
 
-    `d3.select("body").attr("bg-color", "steelblue")`
+  `d3.select("body").attr("bg-color", "steelblue")`
 
-  You should go into Chrome inspector and look at the `body` tag.
+You should go into Chrome inspector and look at the `body` tag.
 
-  Let's look at other basic things you can do with a selector. Create a `div`
-  in `index.erb` with a class of `box`, like so:
+Let's look at other basic things you can do with a selector. Create a `div`
+in `index.erb` with a class of `box`, like so:
 
-    `<div class="box"></div>`
+  `<div class="box"></div>`
 
-  Now let's change the style of this div using the `style` method:
+Now let's change the style of this div using the `style` method:
 
-    ```javascript
-    d3.select('.box')
-      .style("height", "100px")
-      .style("width", "100px")
-      .style("border", "1px solid"});
-    ```
+  ```javascript
+  d3.select('.box')
+    .style("height", "100px")
+    .style("width", "100px")
+    .style("border", "1px solid"});
+  ```
 
-  The `style` method takes two arguments: the key and the value of the style
-  attribute you want to change. This works similar to the `attr` method, except
-  `style` changes the "style" attribute on a DOM element, while `attr` changes
-  the DOM attributes. Look at this element in your browser's inspector.
+The `style` method takes two arguments: the key and the value of the style
+attribute you want to change. This works similar to the `attr` method, except
+`style` changes the "style" attribute on a DOM element, while `attr` changes
+the DOM attributes. Look at this element in your browser's inspector.
 
-  Notice that we're chaining methods together. The `style` method returns the
-  selection we're modifying. This makes chaining more `style` or other methods
-  possible. We can also pass in a JavaScript object - this is a shortcut.
+Notice that we're chaining methods together. The `style` method returns the
+selection we're modifying. This makes chaining more `style` or other methods
+possible. We can also pass in a JavaScript object - this is a shortcut.
 
-    ```javascript
-      d3.select('.body').style(
-        {border: "1px solid", height: '100px', width: '100px'}
-      )
-    ```
+  ```javascript
+    d3.select('.body').style(
+      {border: "1px solid", height: '100px', width: '100px'}
+    )
+  ```
 
-  Let's use the `text` method and add some text to each div.
+Let's use the `text` method and add some text to each div.
 
-    `d3.select('.box').text("hello")`
+  `d3.select('.box').text("hello")`
 
-  `text` also returns the selection. We don't have to keep calling `select`, we
-  can just set the selection to a variable.
+`text` also returns the selection. We don't have to keep calling `select`, we
+can just set the selection to a variable.
 
-  Keep in mind that `select` will only return the _first_ DOM selection. For
-  instance, let's create four more `<div class="box"></div>" elements. If we
-  keep the same code, we notice that only the first of the divs gets the styles
-  applied to it. But if we use `selectAll` instead...
+Keep in mind that `select` will only return the _first_ DOM selection. For
+instance, let's create four more `<div class="box"></div>" elements. If we
+keep the same code, we notice that only the first of the divs gets the styles
+applied to it. But if we use `selectAll` instead...
 
-  That does it!
+That does it!
 
-  So far we've been able to select DOM elements and change them by passing in
-  static values. But we can also pass in functions too.
+So far we've been able to select DOM elements and change them by passing in
+static values. But we can also pass in functions too.
 
-    `box.text(function() { return "this is coming from a function" })`
+  `box.text(function() { return "this is coming from a function" })`
 
-  We can do a lot more with functions in the next chapter.
+We can do a lot more with functions in the next chapter.
 
 ## `classed`
 
-  Using attr, we can technically set classes on D3 selections like so:
+Using attr, we can technically set classes on D3 selections like so:
 
-    `box.attr("class", "new-class")`
+  `box.attr("class", "new-class")`
 
-  The problem is if we want to add more than one class to a selection,
-  it would get overwritten by the `attr` method. D3 has another method to help
-  out with that.
+The problem is if we want to add more than one class to a selection,
+it would get overwritten by the `attr` method. D3 has another method to help
+out with that.
 
-    `box.classed("new-class", true)`
+  `box.classed("new-class", true)`
 
-  This method lets us add and remove classes easily.
+This method lets us add and remove classes easily.
 
 
 ## Appending
-  D3 selectons also let us easily append other DOM elements inside of our
-  selection. Let's add a `<strong>` tag to our box, right before we add our text.
+D3 selectons also let us easily append other DOM elements inside of our
+selection. Let's add a `<strong>` tag to our box, right before we add our text.
 
-  ```javascript
-    var box = d3.selectAll(".box")
+```javascript
+  var box = d3.selectAll(".box")
 
-    box
-    .style(
-      {
-        width: "100px",
-        height: "100px",
-        border: "1px solid"
-      }
-    )
+  box
+  .style(
+    {
+      width: "100px",
+      height: "100px",
+      border: "1px solid"
+    }
+  )
 
-    var strong = box
-      .append('strong')
+  var strong = box
+    .append('strong')
 
-    strong.text("Hello")
-  ```
+  strong.text("Hello")
+```
 
-  When we call `append`, we pass in the name of the element we want to create.
-  The element gets created, and now the selection refers to the element we just
-  appended, not the original selection. Also notice that the `<strong>` tag gets
-  appended to *every* element in the original selection.
+When we call `append`, we pass in the name of the element we want to create.
+The element gets created, and now the selection refers to the element we just
+appended, not the original selection. Also notice that the `<strong>` tag gets
+appended to *every* element in the original selection.
 
 ## Exercises
 

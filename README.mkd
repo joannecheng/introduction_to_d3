@@ -22,20 +22,20 @@ Given at eurucamp 2014.
 ## Selections
 * Selecting a DOM element
 * Modifying a selection
-* Creating new elements
+* Appending new elements
+* `.attr`
 
 ## Data
 * Binding a simple array to a selection
 * `.selectAll`, `.data`, and `.enter`
-* `.attr`
   * static param
   * function param
 * `.exit`
-* Getting data using `.csv`
 
 ## Let's talk about SVG
 * Change previous examples to SVG
 * Styling SVG with CSS
+* Getting data using `.csv`
 
 ## Transitions
 

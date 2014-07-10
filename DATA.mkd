@@ -45,11 +45,17 @@ A lot just happened here.
   `append` is called. This appends a "div" to `.container` for every element in
   array `numbers`.
 
-So now we have 6 divs with the class of 'bar'. Let's see if we can display data
-from the array in the DOM.
+So now we have 6 divs with the class of 'bar'. Let's see if we can display these
+six bars.
+
 
 ```javascript
-  bars.text(function(d) { return d; });
+  bars.
+    style({
+      height: "60px",
+      width: "40px",
+      background-color: "steel-blue"
+    })
 ```
 
 Now we should be seeing the numbers displayed on the screen. Cool! Let's change
@@ -70,3 +76,12 @@ a simple function to the `style` method.
 ```javascript
   bars.style("height", function(d) { return d + "px"; })
 ```
+
+Now the bars are displaying the correct height! We can add more elements to the
+numbers array above and the graph will change accordingly.
+
+## Exiting
+
+Sometimes we need to update our visualizations
+
+Congrats, we covered a huge part of what makes D3 great.

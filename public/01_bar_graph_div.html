@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="d3.js" type="text/javascript"></script>
+
+  <style>
+    div.bar {
+      display: inline-block;
+      margin-left: 5px;
+      width: 40px;
+      background-color: steelblue;
+    }
+  </style>
+</head>
+
+<body>
+<script>
+  var numbers = [30, 10, 23, 49, 27, 20, 80]
+
+  var selection = d3.select("body")
+    .append('div').classed('container', true);
+
+  var bars = selection.selectAll("div")
+    .data(numbers)
+    .enter()
+    .append("div")
+    .classed("bar", true)
+    .style("height", function(d) { return d + "px"; })
+
+</script>
+</body>
+</html>

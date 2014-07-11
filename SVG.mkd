@@ -1,1 +1,62 @@
 ### SVG
+
+So we made a simple bar graph from HTML and CSS. This is pretty cool, but
+there's a better way to draw graphics in browsers.
+
+## What is SVG?
+
+SVG is essentially a way to draw graphics using XML markup. It's compatible with
+other W3C standards, like CSS and the DOM. This makes it really easy to
+incorprate SVG into our websites.
+
+If you know your way around the DOM and have wrangled some HTML, SVG may be
+familiar to you. There are a lot of attribute names and values that are specific
+to SVG types, so the SVG documentation will be very handy when you start drawing
+with SVG (https://developer.mozilla.org/en-US/docs/Web/SVG).
+
+Let's go back to our bar chart example. The code should look like this:
+
+(link to 01_bar_graph_divs.html)
+
+We're going to replace our divs with SVG's `rect` tag. Open up the documentation
+https://developer.mozilla.org/en-US/docs/Web/SVG/Element/rect
+
+Now we're going to chang our code a little bit. Rather than appending `div`s,
+we'll be appending `rects` instead.
+
+```css
+  rect.bar {
+    fill: steelblue;
+  }
+```
+
+```javascript
+  var numbers = [30, 10, 23, 49, 27, 20, 80]
+  var barWidth = 40
+
+  var svg = d3.select("body")
+    .append('svg')
+
+  var selection = svg
+    .append('g')
+    .classed('container', true)
+
+  var bars = selection.selectAll("rect.bar")
+    .data(numbers)
+    .enter()
+    .append("rect")
+    .classed("bar", true)
+    .attr("height", function(d) { return d; })
+    .attr("x", function(d, i) { return i*barWidth; })
+    .attr({y: 0, width: barWidth})
+```
+
+The code looks almost identical to our previous example, but with some minor
+changes!
+
+* We appended an `svg` element to the body. We need to create our SVG markup
+in this tag
+* We created an element called `g` in that `svg` block. This is a container
+tag. It's not needed, but it's good practice to include it so we can organize
+our SVG markup.
+* 

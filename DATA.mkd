@@ -84,4 +84,8 @@ numbers array above and the graph will change accordingly.
 
 Sometimes we need to update our visualizations
 
-Congrats, we covered a huge part of what makes D3 great.
+TODO
+
+Congrats, we covered a huge part of what makes D3 great. But we *really*
+shouldn't be using divs like this. Thankfully we can use SVG to draw the shapes
+to represent our data!

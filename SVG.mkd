@@ -73,6 +73,39 @@ ways. First, let's try to draw our rectangles from the "bottom" of our graph.
 In order to have a "bottom" of our graph, we're going to need a max height.
 This is going to be the bottom of our graph.
 
-```
+```javascript
 var maxHeight = 150;
 ```
+
+Our y position represents our "starting" position. When we draw a rectangle
+with SVG, our rectangle draws out to the right and down. So our starting
+position is going to be our max height minus our actual height value.
+
+```javascript
+.attr("y", function(d) { return maxHeight - d; })
+```
+
+Our height is going to be the same. We want the bar graph to have the same
+height as its value.
+
+```javascript
+.attr("y", function(d) { return d; })
+```
+
+There we go! We can play around with the maxHeight and array values to
+get an idea of how the heights are getting generated.
+
+We can also use svg transformations. let's try writing that last example
+from scratch, but let's not do that crazy math. Instead, let's add this
+bit of code to the end.
+
+```javascript
+    .attr("transform", function(d) {
+      return "translate(0,"+ (maxHeight - d) +")";
+    })
+```
+
+We already know that we're changing the "transform" attribute. We're
+setting the value to this string that's in the format of "translate(x, y)".
+This moves whatever svg element we have to the right and down by however
+many pixels we give it.

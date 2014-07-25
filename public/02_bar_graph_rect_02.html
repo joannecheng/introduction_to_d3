@@ -13,6 +13,7 @@
 <body>
 <script>
   var numbers = [30, 10, 23, 49, 27, 20, 80]
+  var maxHeight = 100
   var barWidth = 40
 
   var svg = d3.select("body")
@@ -27,10 +28,10 @@
     .enter()
     .append("rect")
     .classed("bar", true)
+    .attr("y", function(d) { return maxHeight - d; })
     .attr("height", function(d) { return d; })
     .attr("x", function(d, i) { return i*barWidth; })
-    .attr({y: 0, width: barWidth})
-
+    .attr("width", barWidth)
 </script>
 </body>
 </html>

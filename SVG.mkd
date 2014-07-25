@@ -58,5 +58,21 @@ changes!
 in this tag
 * We created an element called `g` in that `svg` block. This is a container
 tag. It's not needed, but it's good practice to include it so we can organize
-our SVG markup.
-* 
+and properly separate our SVG markup.
+* Rather than select a div, we select a `rect` svg element.
+* According to the svg spec, we need to explicity the x, y, height, and width
+attributes.
+* Notice how we can still style our `rect` elements with css.
+
+## The coordinate system
+
+As you can see, the bar graph is upside down right now. That's because the
+larger the Y value, the further down the page it is. We can do this a few
+ways. First, let's try to draw our rectangles from the "bottom" of our graph.
+
+In order to have a "bottom" of our graph, we're going to need a max height.
+This is going to be the bottom of our graph.
+
+```
+var maxHeight = 150;
+```

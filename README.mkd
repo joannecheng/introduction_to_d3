@@ -35,11 +35,15 @@ Given at eurucamp 2014.
 ## Let's talk about SVG
 * Change previous examples to SVG
 * Styling SVG with CSS
-* Getting data using `.csv`
+
+## Getting data
+* `.csv`
 
 ## Transitions
 
 ## Mouse Interactions
+* Various mouse events
+* Gotchas
 
 ## Layouts
 * Creating a network of GitHub following/followers/random users

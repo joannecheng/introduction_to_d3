@@ -1,0 +1,18 @@
+## Getting Data
+
+We want to start visualizing real data. This data usually comes in multiple
+dimensions. D3 gives us some helpers to deal with things like CSV and JSON
+files. Let's practice our D3 skills on some real data and practice by
+recreating a solar system in our browser.
+
+Steps:
+
+* Setting up a D3 visualization from scratch
+* Copy `public/blank_template.html` to `public/planets.html`
+* Get `planets.csv` using `d3.csv`
+* draw circles for each planet
+* Introduce scales
+  * translate radius to to pixels
+  * translate distance to pixels
+* Style planets using css, classes
+* change data in planets, csv

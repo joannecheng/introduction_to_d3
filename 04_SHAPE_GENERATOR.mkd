@@ -1,1 +1,7 @@
 ## D3's Shape Generator
+
+* Creating a line graph
+  * Line generation
+  * Axises
+* Creating *two* lines
+* Creating an area graph

@@ -36,6 +36,10 @@ Given at eurucamp 2014.
 * Change previous examples to SVG
 * Styling SVG with CSS
 
+## Shape Generators
+* Drawing a line graph with `d3.line`
+* Drawing an area graph with `d3.area`
+
 ## Getting data
 * `.csv`
 

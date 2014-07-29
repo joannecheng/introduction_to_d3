@@ -5,9 +5,8 @@ Animating our solar system.
 Start with moving our solar system into their right
 positions on load.
 
-Animating/transitioning colors
-
-animating/transitioning sizes
+* Animating/transitioning colors
+* animating/transitioning sizes
 
 Final step: 
 ```javascript

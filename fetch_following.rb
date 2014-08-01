@@ -104,13 +104,13 @@ o = OutputFormatter.new github_user
 
 output << o.output
 
-github_user.following_usernames.each do |following_user|
-  github_user = GithubUser.new(following_user)
+github_user.following_users.each do |following_user|
+  github_user = GithubUser.new(following_user[:username])
   o = OutputFormatter.new github_user
   output << o.output
 end
 
-puts output.to_json
+open("output2.json", "w+").write(output.to_json)
 
 #output_formatted = JSON.parse open("output.json").read
 #all_usernames = output_formatted.map { |o| [o["username"], o["following"]] }.flatten.uniq

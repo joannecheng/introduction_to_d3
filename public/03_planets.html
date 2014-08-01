@@ -6,6 +6,24 @@
 
   <!-- Style goes here! -->
   <style>
+    circle.jupiter {
+      fill: rgb(200, 80, 40);
+    }
+    circle.saturn {
+      fill: rgb(230, 180, 40);
+    }
+    circle.neptune {
+      fill: rgb(40, 100, 240);
+    }
+    circle.uranus {
+      fill: rgb(180, 200, 240);
+    }
+    circle.mars {
+      fill: rgb(240, 40, 40);
+    }
+    circle.earth {
+      fill: rgb(30, 30, 200);
+    }
   </style>
 </head>
 
@@ -13,6 +31,47 @@
 
 <!-- Javascript goes here! -->
 <script>
+
+var maxPlanetRadius = 20;
+var width = 1600;
+var svg = d3.select('body')
+  .append('svg')
+  .attr("width", width)
+  .append('g')
+
+d3.csv("planets.csv", function(data) {
+  var radiusExtent = d3.extent(data, function(d) {
+    return d.diameter/2;
+  });
+
+  var radiusScale = d3.scale
+    .pow(0.5)
+    .domain(radiusExtent)
+    .range([3, maxPlanetRadius])
+
+  var distanceMax = d3.max(data, function(d) {
+    return parseFloat(d.distance_from_sun);
+  })
+
+  var distanceScale = d3.scale.linear()
+    .domain([0, distanceMax])
+    .range([1, width - maxPlanetRadius])
+
+  svg.selectAll("planets")
+    .data(data).enter()
+    .append("circle")
+    .attr("class", function(d) {
+      return d.name;
+    })
+    .attr("cx", function(d) {
+      return distanceScale(parseInt(d.distance_from_sun))
+    })
+    .attr("cy", maxPlanetRadius + 10)
+    .attr("r", function(d) {
+      return radiusScale(d.diameter/2);
+    });
+})
+
 </script>
 
 </body>

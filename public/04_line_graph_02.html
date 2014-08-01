@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- include d3.js -->
+  <script src="d3.js" type="text/javascript"></script>
+
+  <!-- Style goes here! -->
+  <style>
+    .axes path {
+      fill: none;
+      stroke: black;
+    }
+    .axes text {
+      font-size: 11px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="content">
+  </div>
+
+<!-- Javascript goes here! -->
+<script>
+  var w = 600;
+  var h = 200;
+  var svg = d3.select("#content")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h)
+
+  var margin = {
+    right: 20,
+    left: 20,
+    bottom: 20,
+    top: 10
+  }
+
+  d3.json("/count_per_day.json", function(data) {
+    var graphContents = svg.append("g")
+      .attr("transform", "translate("+margin.right+",0)")
+
+    var timeExtent = d3.extent(data, function(d) {
+      return d.timestamp;
+    });
+    var maxValue = d3.max(data, function(d) {
+      return d.value;
+    })
+
+    var xScale = d3.time.scale()
+      .domain(timeExtent)
+      .range([0, w-margin.left-margin.right])
+
+    var yScale = d3.scale.linear()
+      .domain([0, maxValue])
+      .range([h-margin.top-margin.bottom, 0])
+
+    var line = d3.svg.line()
+      .x(function(d) { return xScale(d.timestamp) })
+      .y(function(d) { return yScale(d.value) })
+
+    graphContents.append("g")
+      .classed("lines", true)
+      .append("path")
+      .classed("line", true)
+      .attr("d", line(data))
+      .attr("stroke", "steelblue")
+      .attr("fill", "none")
+      .attr("transform", "translate(0,"+margin.top+")")
+
+    var xAxis = d3.svg.axis()
+      .scale(xScale)
+
+    var yAxis = d3.svg.axis()
+      .scale(yScale)
+      .orient("left")
+
+    var axisContainer = graphContents.append("g")
+      .classed("axes", true)
+
+    axisContainer.append("g")
+      .classed("x-axis", true)
+      .call(xAxis)
+      .attr("transform", "translate(0,"+(h - margin.bottom)+")")
+
+    axisContainer.append("g")
+      .classed("y-axis", true)
+      .call(yAxis)
+      .attr("transform", "translate(0,"+margin.top+")")
+  })
+</script>
+
+</body>
+</html>

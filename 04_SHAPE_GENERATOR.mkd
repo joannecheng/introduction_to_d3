@@ -1,7 +1,8 @@
 ## D3's Shape Generator
 
-* Creating a line graph
+* Basic Line, SVG Path
+* A Proper Line graph
+  * get data from `/count_per_day`
   * Line generation
   * Axises
-* Creating *two* lines
 * Creating an area graph

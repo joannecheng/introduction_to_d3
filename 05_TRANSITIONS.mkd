@@ -1,16 +1,8 @@
 ## Transitions
 
-Animating our solar system.
+Animating a bar graph
 
-Start with moving our solar system into their right
-positions on load.
+Create a bar graph
 
-* Animating/transitioning colors
-* animating/transitioning sizes
-
-Final step: 
-```javascript
-setInterval
-```
-Query endpoint every 10 seconds, update data at will.
-Watch planets move position.
+Goal: Query endpoint every 10 seconds,
+watch graph update data.

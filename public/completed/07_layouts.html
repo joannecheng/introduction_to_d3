@@ -30,7 +30,7 @@ d3.json("/output.json", function(data) {
   });
 
   var publicReposScale = d3.scale.pow(0.5)
-    .domain(publicReposExtent).range([1, 10])
+    .domain(publicReposExtent).range([2, 10])
 
   var container = d3.select("#container")
     .append("svg")
@@ -41,7 +41,7 @@ d3.json("/output.json", function(data) {
     .nodes(data.nodes)
     .links(data.edges)
     .size([w, h])
-    .charge([-50])
+    .charge([-30])
     .linkDistance([1])
     .start();
 

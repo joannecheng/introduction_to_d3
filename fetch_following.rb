@@ -20,7 +20,7 @@ class OutputFormatter
 
   def edges
     @github_user.following_users.map do |user|
-      { source: @github_user.username, target: user.username}
+      { source: @github_user.username, target: user.username }
     end
   end
 
@@ -123,6 +123,13 @@ github_user.following_users.each do |following_user|
   output[:edges].flatten!
   output[:nodes] << o.nodes
   output[:nodes].flatten!
+end
+
+output[:edges] = output[:edges].map do |edge|
+  {
+    source: output[:nodes].index { |n| n[:username] == edge[:source] },
+    target: output[:nodes].index {|n| n[:username] == edge[:target] }
+  }
 end
 
 open("output.json", "w+").write(output.to_json)

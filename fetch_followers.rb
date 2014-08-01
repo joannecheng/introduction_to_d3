@@ -3,10 +3,9 @@ require 'json'
 require 'pry'
 
 if ARGV.count < 1
-  puts "USAGE: fetch_following.rb USERNAME [--depth NUMBER]"
+  puts "USAGE: fetch_following.rb"
   exit
 end
-
 
 class OutputFormatter
   def initialize(github_user)
@@ -17,7 +16,7 @@ class OutputFormatter
     {
       username: @github_user.username,
       public_repos: @github_user.public_repos,
-      following: @github_user.following_usernames
+      following: @github_user.following_users
     }
   end
 end
@@ -34,8 +33,8 @@ class GithubUser
     body["public_repos"]
   end
 
-  def following_usernames
-    following.logins
+  def following_users
+    following.usernames_and_counts
   end
 
   private
@@ -69,11 +68,24 @@ class GithubUserFollowing
   end
 
   def logins
-    @body.map { |b| b["login"]}
+    body.map { |b| b["login"]}
   end
 
-  def user_urls
-    @body.map { |b| b["url"]}
+  def users
+    @users ||= logins.map do |login|
+      GithubUser.new(login)
+    end
+  end
+
+  def usernames_and_counts
+    users.map do |user|
+      puts user.public_repos
+      puts user.username
+      {
+        username: user.username,
+        public_repos: user.public_repos,
+      }
+    end
   end
 
   def url
@@ -99,3 +111,6 @@ github_user.following_usernames.each do |following_user|
 end
 
 puts output.to_json
+
+#output_formatted = JSON.parse open("output.json").read
+#all_usernames = output_formatted.map { |o| [o["username"], o["following"]] }.flatten.uniq

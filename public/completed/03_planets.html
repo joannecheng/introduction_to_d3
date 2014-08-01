@@ -39,7 +39,7 @@ var svg = d3.select('body')
   .attr("width", width)
   .append('g')
 
-d3.csv("planets.csv", function(data) {
+d3.csv("/planets.csv", function(data) {
   var radiusExtent = d3.extent(data, function(d) {
     return d.diameter/2;
   });

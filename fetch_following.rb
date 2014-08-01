@@ -12,11 +12,22 @@ class OutputFormatter
     @github_user = github_user
   end
 
-  def output
+  def nodes
+    @github_user.following_users.map do |user|
+      output(user)
+    end << output(@github_user)
+  end
+
+  def edges
+    @github_user.following_users.map do |user|
+      { source: @github_user.username, target: user.username}
+    end
+  end
+
+  def output(user)
     {
-      username: @github_user.username,
-      public_repos: @github_user.public_repos,
-      following: @github_user.following_users
+      username: user.username,
+      public_repos: user.public_repos,
     }
   end
 end
@@ -34,7 +45,7 @@ class GithubUser
   end
 
   def following_users
-    following.usernames_and_counts
+    following.users
   end
 
   private
@@ -96,21 +107,22 @@ class GithubUserFollowing
   attr_reader :username, :login, :user_url
 end
 
-output = []
+output = {edges: [], nodes: []}
 username = ARGV[0]
 
 github_user = GithubUser.new(username)
 o = OutputFormatter.new github_user
 
-output << o.output
+output[:edges] << o.edges
+output[:nodes] << o.nodes
 
 github_user.following_users.each do |following_user|
-  github_user = GithubUser.new(following_user[:username])
+  github_user = GithubUser.new(following_user.username)
   o = OutputFormatter.new github_user
-  output << o.output
+  output[:edges] << o.edges
+  output[:edges].flatten!
+  output[:nodes] << o.nodes
+  output[:nodes].flatten!
 end
 
-open("output2.json", "w+").write(output.to_json)
-
-#output_formatted = JSON.parse open("output.json").read
-#all_usernames = output_formatted.map { |o| [o["username"], o["following"]] }.flatten.uniq
+open("output.json", "w+").write(output.to_json)

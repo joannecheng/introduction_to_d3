@@ -2,7 +2,7 @@
 <html>
 <head>
   <!-- include d3.js -->
-  <script src="d3.js" type="text/javascript"></script>
+  <script src="/d3.js" type="text/javascript"></script>
 
   <!-- Style goes here! -->
   <style>
@@ -13,6 +13,9 @@
 
 <!-- Javascript goes here! -->
 <script>
+d3.json("output.json", function(data) {
+  console.log(data);
+})
 </script>
 
 </body>
